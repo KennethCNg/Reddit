@@ -28,13 +28,13 @@ ActiveRecord::Schema.define(version: 20180316002452) do
   end
 
   create_table "subs", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "url"
-    t.string "content"
+    t.string "name", null: false
+    t.text "description"
     t.integer "moderator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["moderator_id"], name: "index_subs_on_moderator_id", unique: true
+    t.index ["moderator_id"], name: "index_subs_on_moderator_id"
+    t.index ["name"], name: "index_subs_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

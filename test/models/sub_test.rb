@@ -3,10 +3,9 @@
 # Table name: subs
 #
 #  id           :integer          not null, primary key
-#  title        :string           not null
-#  url          :string
-#  content      :string
+#  name         :string           not null
 #  moderator_id :integer          not null
+#  description  :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
