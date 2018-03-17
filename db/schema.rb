@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180316002452) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_posts_on_author_id"
-    t.index ["sub_id"], name: "index_posts_on_sub_id", unique: true
+    t.index ["sub_id"], name: "index_posts_on_sub_id"
   end
 
   create_table "subs", force: :cascade do |t|
