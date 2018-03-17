@@ -16,6 +16,20 @@ class User < ApplicationRecord
     attr_reader :password
     after_initialize :ensure_session_token
 
+    has_many(
+        :subs,
+        primary_key: :id,
+        foreign_key: :moderator_id,
+        class_name: :Sub
+    )
+
+    has_many(
+        :posts,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :Post
+    )
+
     def self.find_user_by_credentials(username, password)
         user = User.find_by(username: username)
         user && BCrypt::Password.new(password_digest).is_password?(password) ? user : nil
