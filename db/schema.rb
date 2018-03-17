@@ -16,12 +16,14 @@ ActiveRecord::Schema.define(version: 20180316002452) do
   enable_extension "plpgsql"
 
   create_table "posts", force: :cascade do |t|
-    t.text "comment", null: false
+    t.string "title", null: false
+    t.string "url"
+    t.string "content"
     t.integer "sub_id", null: false
     t.integer "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_posts_on_author_id", unique: true
+    t.index ["author_id"], name: "index_posts_on_author_id"
     t.index ["sub_id"], name: "index_posts_on_sub_id", unique: true
   end
 
