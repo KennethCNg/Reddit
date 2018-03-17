@@ -20,7 +20,8 @@ class User < ApplicationRecord
         :subs,
         primary_key: :id,
         foreign_key: :moderator_id,
-        class_name: :Sub
+        class_name: :Moderator,
+        inverse_of: :moderator,
     )
 
     has_many(
@@ -28,6 +29,7 @@ class User < ApplicationRecord
         primary_key: :id,
         foreign_key: :author_id,
         class_name: :Post
+        inverse_of: :authors
     )
 
     def self.find_user_by_credentials(username, password)
