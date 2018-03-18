@@ -13,11 +13,6 @@ class UsersController < ApplicationController
         end
     end
 
-    def update
-        @user = Uesr.find_by_credentials(user_params)
-        if @user
-    end
-
     private
 
     def user_params
