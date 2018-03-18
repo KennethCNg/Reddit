@@ -16,19 +16,21 @@ class User < ApplicationRecord
     attr_reader :password
     after_initialize :ensure_session_token
 
+    # inverse_of references the same assocation in memory and therefore saves memory
     has_many(
         :subs,
         primary_key: :id,
         foreign_key: :moderator_id,
         class_name: :Moderator,
-        inverse_of: :moderator,
+        inverse_of:
+        :moderator
     )
 
     has_many(
         :posts,
         primary_key: :id,
         foreign_key: :author_id,
-        class_name: :Post
+        class_name: :Post,
         inverse_of: :authors
     )
 

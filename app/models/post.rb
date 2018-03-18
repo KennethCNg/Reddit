@@ -6,7 +6,6 @@
 #  title      :string           not null
 #  url        :string
 #  content    :string
-#  sub_id     :integer          not null
 #  author_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -19,14 +18,23 @@ class Post < ApplicationRecord
         :author,
         primary_key: :id,
         foreign_key: :author_id,
-        class_name: :User, 
+        class_name: :User,
+        inverse_of: :posts
     )
 
-    belongs_to(
-        :sub,
+    has_many(
+        :post_subs,
         primary_key: :id,
-        foreign_key: :sub_id,
-        class_name: :Sub
+        foreign_key: :post_id,
+        class_name: :PostSub,
+        inverse_of: :post,
+        dependent: :destroy
+    )
+
+    has_many(
+        :subs,
+        through: :post_subs,
+        source: :sub
     )
 
 end

@@ -19,14 +19,22 @@ class Sub < ApplicationRecord
         primary_key: :id,
         foreign_key: :moderator_id,
         class_name: :User,
+        inverse_of: :sub
+    )
+
+    has_many(
+        :post_subs,
+        primary_key: :id,
+        foreign_key: :post_id,
+        class_name: :PostSub,
+        inverse_of: :sub,
+        dependent: :destroy
     )
 
     has_many(
         :posts,
-        primary_key: :id,
-        foreign_key: :sub_id,
-        class_name: :Post,
-        inverse_of: :sub,
+        through: :post_subs,
+        source: :post
     )
 
 end
